@@ -1,155 +1,112 @@
-DSA Sim: An Interactive Data Structures & Algorithms Learning Platform
-1. Project Overview
-DSA Sim is a web-based coding game designed to help users practice Data Structures and Algorithms (DSA) through interactive, step-by-step visualizations. The platform provides a clean interface where users can select coding problems, write solutions in a fully-featured code editor, and run their code against test cases. The core feature is a dynamic simulation engine that animates the user's specific algorithm, providing visual feedback on its execution, including successes and points of failure. The application is built entirely with React and Tailwind CSS, with all state and problem data managed locally.
+# DSA Sim: An Interactive Data Structures & Algorithms Learning Platform
 
-2. Features
-Problem Categories: A collection of DSA topics including Sorting, Graphs, Arrays, Dynamic Programming, and Recursion.
+## 1. Project Overview
+**DSA Sim** is a web-based coding game designed to help users practice Data Structures and Algorithms (DSA) through interactive, step-by-step visualizations. Users can select coding problems, write solutions in a fully-featured code editor, and run their code against test cases.  
 
-In-Browser Code Editor: Powered by Monaco Editor, featuring syntax highlighting, code formatting (via Prettier), and a clean editing experience.
+The core feature is a dynamic simulation engine that animates the user's algorithm, providing visual feedback on execution, including successes and points of failure. The application is built entirely with **React** and **Tailwind CSS**, with all state and problem data managed locally.
 
-Dynamic Simulation Engine: The visualization panel animates the execution of the user's code, not a canned animation.
+---
 
-Step-by-Step Controls: Play, Pause, Next, Previous, and Reset functionality.
+## 2. Features
 
-Playback Speed Control: Adjustable speed settings (Slow, Default, Fast, Very Fast).
+- **Problem Categories:** Sorting, Graphs, Arrays, Dynamic Programming, Recursion.
+- **In-Browser Code Editor:** Powered by Monaco Editor with syntax highlighting, code formatting (Prettier), and a clean editing experience.
+- **Dynamic Simulation Engine:** Animates the execution of the user's code directly.
+- **Step-by-Step Controls:** Play, Pause, Next, Previous, Reset.
+- **Playback Speed Control:** Adjustable speeds – Slow, Default, Fast, Very Fast.
+- **Descriptive Steps:** Each animation step includes clear text explanations.
+- **Code-Driven Visualizations:** Animation is manipulated by the user's implementation via a recorder API.
+- **Visual Debugging:**  
+  - Highlights the exact step where an error occurs.  
+  - "Watch" feature to monitor variables in real-time.  
+  - Infinite loop and timeout detection.
+- **Custom Input:** Users can provide their own JSON input for problems; validation logic adapts dynamically.
+- **Gamification Elements:** Tracks solved problems, maintains daily streaks, and awards badges stored in `localStorage`.
+- **Responsive UI:** Styled with Tailwind CSS for seamless experience on all devices.
 
-Descriptive Steps: Each step in the animation is accompanied by a clear text explanation.
+---
 
-Code-Driven Visualizations: The simulation is manipulated directly by the user's implementation via a recorder API, ensuring the animation accurately reflects their logic.
+## 3. Technology Stack
 
-Visual Debugging:
+- **Frontend Framework:** React (Create React App)  
+- **Styling:** Tailwind CSS  
+- **Routing:** React Router  
+- **Code Editor:** Monaco Editor for React  
+- **Code Formatting:** Prettier  
+- **State Management:** React Hooks (`useState`, `useMemo`, `useContext`) + `localStorage`  
 
-The simulation highlights the exact step where an error occurs (e.g., incorrect index, failed assertion).
+---
 
-A "watch" feature allows users to monitor the state of variables in real-time during execution.
+## 4. Project Development and Iterations
 
-Infinite loop and timeout detection are built-in to prevent browser crashes.
+### Iteration 1: Initial Scaffolding and Core Functionality
+- Set up React project with Tailwind CSS.
+- Created main pages: Home, Problem List, Solve, Dashboard.
+- Implemented a foundational simulation engine (Bubble Sort, DFS Traversal).
+- Basic gamification via `localStorage`.
 
-Custom Input: Users can provide their own custom JSON input for any problem to see how their algorithm handles different test cases. The validation logic adapts dynamically to the provided input.
+### Iteration 2: Content Expansion and UI Enhancements
+- Added all problem categories by default.
+- Expanded problem library:  
+  - **Sorting:** Insertion Sort, Selection Sort  
+  - **Graphs:** BFS Traversal  
+  - **Arrays:** Two Sum, Longest Substring (Sliding Window)  
+  - **Dynamic Programming:** Fibonacci (Tabulation)  
+  - **Recursion:** Tower of Hanoi
+- Improved starter code readability and test cases.
+- Added playback speed selector.
 
-Gamification Elements: The application tracks solved problems, maintains a daily streak, and awards badges based on progress, all stored in localStorage.
+### Iteration 3: Advanced, Code-Driven Simulation and Debugging
+- Introduced **recorder API**:
+  - `record.record(step)` – Push animation frames.
+  - `record.watch(vars)` – Display live variable states.
+  - `record.assert(condition, message)` – Flag errors on failed assertions.
+  - `record.error(message)` – Manually flag an error step.
+- UI updated to show step-by-step explanations, variable watches, and errors.
 
-Responsive UI: Styled with Tailwind CSS for a seamless experience on all devices.
+### Iteration 4: Dynamic Input and Validation
+- Added **Custom Input** textarea on Solve page.
+- Evaluation engine enhanced to parse custom JSON input.
+- Test case validation dynamically computes expected output.
 
-3. Technology Stack
-Frontend Framework: React (bootstrapped with Create React App)
+### Iteration 5: Final Fixes and Deployment Guidance
+- Resolved bugs and JSX parsing errors.
+- Fully integrated Prettier for editor formatting.
+- Documented deployment instructions for **Netlify, Vercel, GitHub Pages**.
 
-Styling: Tailwind CSS
+---
 
-Routing: React Router
+## 5. How to Run Locally
 
-Code Editor: Monaco Editor for React
-
-Code Formatting: Prettier
-
-Local State Management: React Hooks (useState, useMemo, useContext) and localStorage for persistence.
-
-4. Project Development and Iterations
-The application was developed iteratively based on a series of prompts.
-
-Iteration 1: Initial Scaffolding and Core Functionality
-The project began with a request to create a working local web app using React and Tailwind CSS. The initial build included:
-
-Setting up a Create React App project and integrating Tailwind CSS.
-
-Scaffolding the main pages (Home, Problem List, Solve, Dashboard) and routing.
-
-Creating a local JSON file for problem data.
-
-Implementing a foundational simulation engine with two working examples: Bubble Sort and DFS Traversal.
-
-Basic gamification by tracking solved problems in localStorage to unlock new categories.
-
-Iteration 2: Content Expansion and UI Enhancements
-The focus shifted to enriching the user experience and content library.
-
-All problem categories were unlocked by default to allow users full access.
-
-A significant number of new problems and corresponding animations were added across all categories:
-
-Sorting: Insertion Sort, Selection Sort
-
-Graphs: BFS Traversal
-
-Arrays: Two Sum, Longest Substring (Sliding Window)
-
-Dynamic Programming: Fibonacci (Tabulation)
-
-Recursion: Tower of Hanoi
-
-The code editor's starter code was improved for readability with multi-line formatting.
-
-More complex test cases were added to the problem set.
-
-Simulation playback speed was made slower by default and a speed control selector was added to the UI.
-
-Iteration 3: Advanced, Code-Driven Simulation and Debugging
-This was a critical phase focused on making the simulation engine truly interactive and reflective of the user's own code.
-
-The recorder API: A recorder object was introduced as an optional second parameter to the user's solve function. This API allows the user's code to emit visualization steps directly.
-
-record.record(step): Pushes a frame to the animation.
-
-record.watch(vars): Displays a live view of specified variables.
-
-record.assert(condition, message): Halts execution and flags an error if a condition is false.
-
-record.error(message): Allows the user to manually flag an error step.
-
-If the user's code does not use the recorder, the system falls back to a reference implementation to generate steps.
-
-The UI was updated to display step-by-step explanations, variable watches, and a prominent error overlay when a failure is detected.
-
-Iteration 4: Dynamic Input and Validation
-To provide a more robust testing environment, the ability for users to add their own inputs was implemented.
-
-A "Custom Input" textarea was added to the Solve page.
-
-The evaluation engine was enhanced to parse this custom JSON input and run the user's code against it.
-
-The test case validation logic was upgraded to compute the expected output dynamically based on the custom input, rather than relying on a static sampleOutput. This ensures custom tests are validated correctly.
-
-Iteration 5: Final Fixes and Deployment Guidance
-The final stage involved polishing the application and preparing it for deployment.
-
-Bugs and JSX parsing errors were resolved.
-
-Prettier was fully integrated to provide robust code formatting within the editor.
-
-Comprehensive deployment instructions were documented for various platforms, including Netlify, Vercel, and GitHub Pages.
-
-5. How to Run Locally
-Clone the repository:
-
+```bash
+# Clone the repository
 git clone <repository-url>
 
-Navigate to the project directory:
-
+# Navigate to project directory
 cd dsa-sim
 
-Install dependencies:
-
+# Install dependencies
 npm install
 
-Start the development server:
-
+# Start development server
 npm start
+```
+If port 3000 is in use:
 
-The application will open at http://localhost:3000. If port 3000 is in use, you can specify a different port:
 
-# For PowerShell
+# PowerShell
+```bash
 $env:PORT=3001; npm start
 
-# For macOS/Linux
+# macOS/Linux
 PORT=3001 npm start
+```
+Open the app at http://localhost:3000.
 
-6. How to Add a New Problem
-Add Data: Append a new problem object to src/state/problems.json. Ensure you select an existing simType (e.g., 'bubble', 'dfs', 'hanoi').
-
+# 6. How to Add a New Problem
+Add Data: Append a new problem object in src/state/problems.json. Use an existing simType (e.g., 'bubble', 'dfs', 'hanoi').
 Create Visualization (if new simType):
-
 Create a new React component in src/visuals/.
+Update src/ui/SimulationPanel.js to render the new component based on its simType.
+Add a reference step-generator in src/utils/evaluator.js for users who don’t use the recorder.
 
-Add the logic to src/ui/SimulationPanel.js to render your new component based on its simType.
-
-Add a reference step-generator to src/utils/evaluator.js for users who don't provide their own record steps.
