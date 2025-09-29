@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "categoryId": "sorting",
+    "category": "Sorting",
+    "title": "Bubble Sort",
+    "simType": "bubble",
+    "description": "Implement Bubble Sort to sort an array of integers in ascending order. Return the sorted array. The simulator will animate comparisons and swaps.",
+    "difficulty": "Easy",
+    "sampleInput": [5, 3, 8, 4, 9, 1, 6],
+    "sampleOutput": [1, 3, 4, 5, 6, 8, 9],
+    "starterCode": "function solve(arr) {\n  // Implement Bubble Sort and return the sorted array\n  const a = arr.slice();\n  let swapped = true;\n  while (swapped) {\n    swapped = false;\n    for (let i = 1; i < a.length; i++) {\n      if (a[i - 1] > a[i]) {\n        const tmp = a[i - 1];\n        a[i - 1] = a[i];\n        a[i] = tmp;\n        swapped = true;\n      }\n    }\n  }\n  return a;\n}"
+  },
+  {
+    "id": 2,
+    "categoryId": "graphs",
+    "category": "Graphs",
+    "title": "DFS Traversal",
+    "simType": "dfs",
+    "description": "Given an adjacency list and a start node, perform Depth-First Search and return the order of visited nodes. The simulator will animate traversal.",
+    "difficulty": "Easy",
+    "sampleInput": {"n": 7, "edges": [[0,1],[0,2],[1,3],[1,4],[2,5],[4,6]], "start": 0},
+    "sampleOutput": [0,1,3,4,6,2,5],
+    "starterCode": "function solve(graph) {\n  // graph = { n, edges: [[u,v],...], start }\n  const adj = Array.from({ length: graph.n }, () => []);\n  for (const [u, v] of graph.edges) { adj[u].push(v); adj[v].push(u); }\n  for (const list of adj) list.sort((a, b) => a - b);\n  const visited = Array(graph.n).fill(false);\n  const order = [];\n  (function dfs(u) {\n    visited[u] = true;\n    order.push(u);\n    for (const v of adj[u]) if (!visited[v]) dfs(v);\n  })(graph.start);\n  return order;\n}"
+  },
+  {
+    "id": 3,
+    "categoryId": "sorting",
+    "category": "Sorting",
+    "title": "Insertion Sort",
+    "simType": "insertion",
+    "description": "Sort an array using Insertion Sort, animating insertion position.",
+    "difficulty": "Easy",
+    "sampleInput": [7, 2, 5, 1, 4, 6, 3],
+    "sampleOutput": [1, 2, 3, 4, 5, 6, 7],
+    "starterCode": "function solve(arr) {\n  const a = arr.slice();\n  for (let i = 1; i < a.length; i++) {\n    let j = i - 1;\n    const key = a[i];\n    while (j >= 0 && a[j] > key) {\n      a[j + 1] = a[j];\n      j--;\n    }\n    a[j + 1] = key;\n  }\n  return a;\n}"
+  },
+  {
+    "id": 4,
+    "categoryId": "sorting",
+    "category": "Sorting",
+    "title": "Selection Sort",
+    "simType": "selection",
+    "description": "Sort an array using Selection Sort, highlighting min selection.",
+    "difficulty": "Easy",
+    "sampleInput": [3, 1, 4, 2, 9, 5, 8],
+    "sampleOutput": [1, 2, 3, 4, 5, 8, 9],
+    "starterCode": "function solve(arr) {\n  const a = arr.slice();\n  for (let i = 0; i < a.length - 1; i++) {\n    let min = i;\n    for (let j = i + 1; j < a.length; j++) {\n      if (a[j] < a[min]) min = j;\n    }\n    if (min !== i) {\n      const t = a[i];\n      a[i] = a[min];\n      a[min] = t;\n    }\n  }\n  return a;\n}"
+  },
+  {
+    "id": 5,
+    "categoryId": "graphs",
+    "category": "Graphs",
+    "title": "BFS Traversal",
+    "simType": "bfs",
+    "description": "Perform Breadth-First Search and return visit order.",
+    "difficulty": "Easy",
+    "sampleInput": {"n": 6, "edges": [[0,1],[0,2],[1,3],[2,4],[3,5]], "start": 0},
+    "sampleOutput": [0,1,2,3,4,5],
+    "starterCode": "function solve(graph){ const adj=Array.from({length:graph.n},()=>[]); for(const [u,v] of graph.edges){adj[u].push(v);adj[v].push(u);} for(const l of adj) l.sort((a,b)=>a-b); const q=[graph.start], vis=Array(graph.n).fill(false); vis[graph.start]=true; const order=[]; while(q.length){ const u=q.shift(); order.push(u); for(const v of adj[u]) if(!vis[v]){ vis[v]=true; q.push(v);} } return order; }"
+  },
+  {
+    "id": 6,
+    "categoryId": "arrays",
+    "category": "Arrays",
+    "title": "Two Sum (Indices)",
+    "simType": "two_sum",
+    "description": "Return indices i,j such that nums[i]+nums[j]=target. Animate hashmap builds and checks.",
+    "difficulty": "Easy",
+    "sampleInput": {"nums":[2,7,11,15],"target":9},
+    "sampleOutput": [0,1],
+    "starterCode": "function solve(data){ const {nums,target}=data; const m=new Map(); for(let i=0;i<nums.length;i++){ const need=target-nums[i]; if(m.has(need)) return [m.get(need), i]; m.set(nums[i], i);} return []; }"
+  },
+  {
+    "id": 7,
+    "categoryId": "arrays",
+    "category": "Arrays",
+    "title": "Longest Substring (Sliding Window)",
+    "simType": "sliding_window",
+    "description": "Length of longest substring without repeating characters.",
+    "difficulty": "Medium",
+    "sampleInput": "abcabcbb",
+    "sampleOutput": 3,
+    "starterCode": "function solve(s){ const set=new Set(); let l=0, best=0; for(let r=0;r<s.length;r++){ while(set.has(s[r])){ set.delete(s[l++]); } set.add(s[r]); best=Math.max(best, r-l+1); } return best; }"
+  },
+  {
+    "id": 8,
+    "categoryId": "dp",
+    "category": "Dynamic Programming",
+    "title": "Fibonacci DP (Tabulation)",
+    "simType": "dp_fib",
+    "description": "Compute nth Fibonacci using tabulation; animate table filling.",
+    "difficulty": "Easy",
+    "sampleInput": 7,
+    "sampleOutput": 13,
+    "starterCode": "function solve(n){ if(n<=1) return n; const dp=Array(n+1).fill(0); dp[1]=1; for(let i=2;i<=n;i++) dp[i]=dp[i-1]+dp[i-2]; return dp[n]; }"
+  },
+  {
+    "id": 9,
+    "categoryId": "recursion",
+    "category": "Recursion",
+    "title": "Tower of Hanoi (3 pegs)",
+    "simType": "hanoi",
+    "description": "Move n disks from A to C using B; animate moves.",
+    "difficulty": "Medium",
+    "sampleInput": 3,
+    "sampleOutput": [["A","C"],["A","B"],["C","B"],["A","C"],["B","A"],["B","C"],["A","C"]],
+    "starterCode": "function solve(n){ const moves=[]; (function go(k,a,b,c){ if(k===0) return; go(k-1,a,c,b); moves.push([a,c]); go(k-1,b,a,c); })(n,'A','B','C'); return moves; }"
+  }
+]
+
+
